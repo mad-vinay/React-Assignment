@@ -1,0 +1,84 @@
+ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start
+}
+.listwrap {
+    width: 80%;
+    padding-top: 15px;
+    margin-bottom: 50px;
+}
+.sidebarWrapper h4 {
+    margin-top: 0;
+}
+.content-wrapper {
+    display: flex;
+}
+.clearBtn {
+    display: block;
+    margin-bottom: 15px;
+    background: #fff;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+.sidebarWrapper {
+    width: calc(20% - 40px);
+    padding: 20px;
+}
+.productCount {
+    font-size: 12px;
+}
+.selectboxStyle {
+    height: 30px;
+    width: 100px;
+    border-radius: 0;
+    outline: none;
+    font-size: 12px;
+    background: #fff;
+}
+.selectBoxWrapper {
+    position: absolute;
+    right: 40px;
+    top: 50px;
+    
+}
+.selectBoxWrapper span {
+    font-size: 12px;
+    margin-right: 5px;
+}
+.detailContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.detailBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px;
+    background: #e2e2e2;
+    text-transform: uppercase;
+}
+.detailBox p {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid;
+}
+.backButton {
+    font-size: 15px;
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    left: 15px;
+}
