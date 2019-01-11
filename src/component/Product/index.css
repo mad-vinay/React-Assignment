@@ -16,21 +16,8 @@
     color: #fff;
     padding: 5px;
 }
-.footerStyle {
-    background: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-}
-.headerStyle {
-    background: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-}
+
+
 .imageStyle {
     height: 200px
 }
@@ -45,19 +32,8 @@
     text-decoration: none;
     text-align: center;
 }
-.sizeSelection {
-    background: #000;
-    border-radius: 50%;
-    padding: 10px;
-    color: #fff;
-    outline: none;
-    height: 40px;
-    width: 40px;
-    font-size: 12px;
-    margin: 0 15px 15px 0;
-    cursor: pointer;
-}
-.sortStyle {
+
+/* .sortStyle {
     position: absolute;
     right: 15px;
     top: 50px;
@@ -68,7 +44,7 @@
 .sortStyle span {
     font-size: 12px;
     margin-right: 5px;
-}
+} */
 .productName {
     font-size: 12px;
     text-transform: capitalize;

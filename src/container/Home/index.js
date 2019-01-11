@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from '../component/header';
-import Footer from '../component/footer';
-import Product from '../component/product'
-import Sidebar from '../component/sidebar';
-import SortBy from '../component/sortBy';
+import Header from '../../component/Header';
+import Footer from '../../component/Footer';
+import Product from '../../component/Product'
+import Sidebar from '../../component/Sidebar';
+import SortBy from '../../component/SortBy';
 import './index.css';
 
 class Home extends Component {
@@ -21,6 +21,7 @@ class Home extends Component {
       {id: 8, name: "product H", price: '$108', shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4jhYVUp5wIVaLtxqVkvGqerYGkjkfDQ3MXik_WJluAb1Tc8tG", size: 'S'}
     ];
     this.state = {
+      selectedSize: [],
       products : products,
       sizes: [
         {id: 1, size: 'S'},
@@ -38,14 +39,29 @@ class Home extends Component {
   }
   
   sizeFilter = (size) => {
+    let {selectedSize} = this.state;
+    if(selectedSize.indexOf(size) < 0) {
+      this.setState({
+        selectedSize: [...selectedSize, size]
+      }, () => this.updateFilteredData());
+    } else {
+      selectedSize.splice(selectedSize.indexOf(size), 1);
+      this.setState({
+        selectedSize: selectedSize
+      }, () => this.updateFilteredData());
+    }
+  }
+
+  updateFilteredData = () => {
+    let {products, selectedSize}=this.state;
     this.setState({
-      filteredArray: this.state.products.filter(item =>(
-        item.size === size
+      filteredArray: products.filter(item =>(
+        selectedSize.indexOf(item.size) !== -1
       ))
     })
   }
 
-  clearFilter = () =>{
+  clearFilter = () => {
     this.setState({
       filteredArray: this.state.products
     })
@@ -55,7 +71,6 @@ class Home extends Component {
     this.setState({
       filteredArray: this.state.selectedValue === "high to low" ? this.state.filteredArray.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)): this.state.filteredArray.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0))
     })
-    console.log(this.state.filteredArray,'#################')
   }
 
   handleChange = (event) => {
@@ -67,6 +82,7 @@ class Home extends Component {
   }
 
   render() {
+    // debugger
     return (
       <div className="App">
         <Header/>
@@ -79,7 +95,7 @@ class Home extends Component {
           <div className="selectBoxWrapper">
             <span>Order By</span>
             <select className="selectboxStyle" value={this.state.sortby.option} onChange={this.handleChange}>
-                <SortBy selectedValue={this.state.sortby} />
+              <SortBy selectedValue={this.state.sortby} />
             </select>
           </div>
           <div className="listwrap">
