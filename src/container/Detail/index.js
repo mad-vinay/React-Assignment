@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './index.css';
-import Header from '../component/header';
-import Footer from '../component/footer';
+import {Header} from '../../component/Header';
+import {Footer} from '../../component/Footer';
 import {Link} from 'react-router-dom';
 
 class Detail extends Component {
 	render() {
         const {item} = this.props.location.state;
-        // console.log(item);
 		return (
             <div className="detailsContainer">
                 <Header/>

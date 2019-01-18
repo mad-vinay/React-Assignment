@@ -1,0 +1,31 @@
+.detailContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.detailBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 50px;
+    background: #e2e2e2;
+    text-transform: uppercase;
+}
+.detailBox p {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid;
+}
+.backButton {
+    font-size: 15px;
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    left: 15px;
+}
