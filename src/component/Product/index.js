@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import './index.css';
+import { connect } from 'react-redux';
 
 class Product extends Component {
   render() {
     return (
-      this.props.product.map(item =>
+      products.map(item =>
         <li className='listStyle' key={item.id}>
           <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
           <img alt="product img" className="imageStyle" src={item.url}></img>
@@ -19,7 +20,17 @@ class Product extends Component {
   }
 }
 
+function mapStatetoProps(state) {
+  console.log(state)
+  return {
+    products: state.products
+  }
+}
+
 Product.propTypes = {
   product: PropTypes.array.isRequired
 };
-export default Product;
+ 
+export default connect(
+  mapStatetoProps
+)(Product);

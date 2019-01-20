@@ -21,6 +21,7 @@ class Home extends Component {
       {id: 8, name: "product H", price: '$108', shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4jhYVUp5wIVaLtxqVkvGqerYGkjkfDQ3MXik_WJluAb1Tc8tG", size: 'S'}
     ];
     this.state = {
+      isActive: '',
       selectedSize: [],
       products : products,
       sizes: [
@@ -54,11 +55,16 @@ class Home extends Component {
 
   updateFilteredData = () => {
     let {products, selectedSize}=this.state;
-    this.setState({
-      filteredArray: products.filter(item =>(
-        selectedSize.indexOf(item.size) !== -1
-      ))
-    })
+    if(this.state.selectedSize.length) {
+      this.setState({
+        filteredArray: products.filter(item =>(
+          selectedSize.indexOf(item.size) !== -1
+        ))
+      })
+    }
+    else {
+      this.clearFilter();
+    }
   }
 
   clearFilter = () => {
@@ -75,22 +81,33 @@ class Home extends Component {
 
   handleChange = (event) => {
     this.setState({
+      isActive: 'active',
       selectedValue: event.target.value
     }, () => {
         this.afterSetStateFinished();
     });
   }
 
+  freeShippingFilter = () => {
+    this.setState({
+      filteredArray: this.state.filteredArray.filter(item => 
+        item.shipping === "free shipping"
+      )
+    })
+  }
+
   render() {
-    // debugger
-    return (
+  console.log(this.state.selectedSize)    
+  return (
       <div className="App">
         <Header/>
         <div className="content-wrapper">
           <div className="sidebarWrapper">
             <h4>Sizes</h4>
             <button className="clearBtn" onClick={this.clearFilter}>Clear Filter</button>
-            <Sidebar handleChange={this.handleChange} sizeFilter={this.sizeFilter} size={this.state.sizes}/>
+            {/* <span>{this.state.selectedSize}</span> */}
+            <Sidebar sizeFilter={this.sizeFilter} size={this.state.sizes}/>
+            <div className="freeShippingBtn" onClick={this.freeShippingFilter}>free shipping</div>
           </div>
           <div className="selectBoxWrapper">
             <span>Order By</span>

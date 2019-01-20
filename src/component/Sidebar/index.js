@@ -5,6 +5,7 @@ import './index.css';
 class Sidebar extends Component {
     
   render() {
+    console.log()
     return (
       this.props.size.map(sizes => (
         <button key={sizes.id} className="sizeSelection" onClick={this.props.sizeFilter.bind(this, sizes.size)}>{sizes.size}</button>

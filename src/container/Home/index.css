@@ -50,3 +50,11 @@ ul {
     font-size: 12px;
     margin-right: 5px;
 }
+.freeShippingBtn {
+    cursor: pointer;
+    text-transform: capitalize;
+    border-top: 2px solid;
+    padding: 15px 0;
+    margin-top: 5px;
+    border-bottom: 2px solid;
+}
