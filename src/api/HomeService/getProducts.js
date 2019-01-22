@@ -1,9 +1,9 @@
-import axios from "axios";
-// import data from '../../assets/data/data.json';
+//import axios from "axios";
+//import {data} from '../../assets/data/data.json';
 
 export function getProductsService() {
     //const url = "../../assets/data/data.json";
-    const url = "http://10.9.12.114/data.json";
+    // const url = "http://localhost/data.json";
     // axios.get(url)
     //     .then((response) => {
     //         debugger;
@@ -13,4 +13,6 @@ export function getProductsService() {
     //         debugger
     //         return err;
     //     })
+    var data = require('../../assets/data/data.json');
+    return data;
 };
