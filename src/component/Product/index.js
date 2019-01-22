@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import './index.css';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { productList } from '../../actions/AddAction.js';
 
 class Product extends Component {
   render() {
     return (
-      products.map(item =>
+      this.props.data.products.map(item =>
         <li className='listStyle' key={item.id}>
           <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
           <img alt="product img" className="imageStyle" src={item.url}></img>
@@ -20,17 +22,22 @@ class Product extends Component {
   }
 }
 
-function mapStatetoProps(state) {
-  console.log(state)
+function matchDispatchToProps(dispatch) {
+  console.log('matchDispatchToProps', dispatch)
+  return bindActionCreators({
+    productList
+  }, dispatch);
+};
+
+function mapStateToProps(state) {
+  console.log('mapStateToProps', state)
   return {
-    products: state.products
+      data: state.productList
   }
-}
+};
 
 Product.propTypes = {
   product: PropTypes.array.isRequired
 };
  
-export default connect(
-  mapStatetoProps
-)(Product);
+export default connect (mapStateToProps, matchDispatchToProps)(Product);

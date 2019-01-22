@@ -1,5 +1,3 @@
-import { createStore } from 'redux';
-
 let products = [
     {id: 1, name: "product A", price: '$10', shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5azB_EG6ZqYNHMh6_iBmEo2rc3vczNMfxHlAOGi5bXA2LkAFYbg", size: 'S'},
     {id: 2, name: "product B", price: '$100', shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZT-t_9ZmRG3QcGdUCMyF9AMdBUykODDxhTjBbd2J_Dt3OpT_hFw", size: 'L'},
@@ -11,36 +9,49 @@ let products = [
     {id: 8, name: "product H", price: '$108', shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4jhYVUp5wIVaLtxqVkvGqerYGkjkfDQ3MXik_WJluAb1Tc8tG", size: 'S'}
 ];
 
-
-const initialState = {
-
+const initialState = {      
     isActive: '',
     selectedSize: [],
     products : products,
     sizes: [
-        {id: 1, size: 'S'},
-        {id: 2, size: 'M'},
-        {id: 3, size: 'L'},
-        {id: 4, size: 'XL'},
-        {id: 5, size: 'XXL'},
+    {id: 1, size: 'S'},
+    {id: 2, size: 'M'},
+    {id: 3, size: 'L'},
+    {id: 4, size: 'XL'},
+    {id: 5, size: 'XXL'},
     ],
     sortby: [
-        {id: 1, option: 'high to low', name: 'High to Low'},
-        {id: 2, option: 'low to hign', name: 'Low to High'},
+    {id: 1, option: 'high to low', name: 'High to Low'},
+    {id: 2, option: 'low to hign', name: 'Low to High'},
     ],
     filteredArray: products,
+    text: 0
 }
 
-const reducer = (state = initialState, action) => {
-    console.log(state, '@@@@@@@@@')
 
-    switch(action, type) {
-        
+//   ​Reducer corresponding to AddAction.js
+export default (state = initialState, action) => {
+    console.log(action, state, 'reducer running')
+    switch (action.type) {
+        case "PRODUCT_LIST":
+            return {
+                ...state,
+            };
+        case "SIDEBAR":
+            return {
+                ...state,
+            };
+        case "SORTBY":
+            return {
+                ...state,
+            };
+        case "HOME":
+            return {
+                ...state,
+            };
+        default:
+            return {
+                ...state
+            };
     }
-
-    return state;
 }
-
-const store = createStore(reducer);
-
-export default store;
