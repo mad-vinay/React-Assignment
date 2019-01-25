@@ -10,7 +10,6 @@ let products = [
 ];
 
 const initialState = {      
-    isActive: '',
     selectedSize: [],
     products : products,
     sizes: [
@@ -25,29 +24,49 @@ const initialState = {
     {id: 2, option: 'low to hign', name: 'Low to High'},
     ],
     filteredArray: products,
-    text: 0
+    text: 0,
+    selectedValue: ''
 }
 
 
 //   ​Reducer corresponding to AddAction.js
 export default (state = initialState, action) => {
-    console.log(action, state, 'reducer running')
+    // console.log(action, state, 'reducer running')
     switch (action.type) {
-        case "PRODUCT_LIST":
-            return {
-                ...state,
-            };
         case "SIDEBAR":
             return {
                 ...state,
+                sizes: action.data
             };
         case "SORTBY":
             return {
                 ...state,
+                sortby: action.data
             };
         case "HOME":
             return {
                 ...state,
+            };
+        case "SIZE_FILTER":
+            return {
+                ...state,
+                selectedSize: action.data
+            };
+        case "UPDATE_FILTER":
+            return {
+                ...state,
+                filteredArray: action.data
+            };
+        case "PRICE_FILTER":
+            return {
+                ...state,
+                selectedValue: action.data,
+                filteredArray: action.data
+            };
+        case "CLEAR_FILTER":
+            return {
+                ...state,
+                selectedSize: action.data
             };
         default:
             return {

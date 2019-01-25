@@ -15,6 +15,12 @@ ul {
 .content-wrapper {
     display: flex;
 }
+.bgBlack {
+    background: #000;
+}
+.btnRed {
+    background: red;
+}
 .clearBtn {
     display: block;
     margin-bottom: 15px;

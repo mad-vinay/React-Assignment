@@ -16,7 +16,6 @@ class Header extends Component {
   // }
 
   render() {
-    console.log('render------->', this.props.data)
     return (
       <div className="headerStyle">
         {/* <span>{this.props.data.text}</span> */}

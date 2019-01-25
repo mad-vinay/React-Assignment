@@ -1,5 +1,5 @@
-.sizeSelection {
-    background: #000;
+.bgBlack,
+.bgRed {
     border-radius: 50%;
     padding: 10px;
     color: #fff;
@@ -9,4 +9,13 @@
     font-size: 12px;
     margin: 0 15px 15px 0;
     cursor: pointer;
+    border: none;
+}
+
+.bgBlack {
+    background: black;
+}
+
+.bgRed {
+    background: red;
 }

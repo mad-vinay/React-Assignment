@@ -1,12 +1,3 @@
-// action for adding baby name
-
-export const productList = (data) => {
-    return{
-        type: 'PRODUCT_LIST',
-        data
-    }
-};
-
 export const sidebar = (data) => {
     return{
         type: 'SIDEBAR',
@@ -24,6 +15,34 @@ export const sortby = (data) => {
 export const homepage = (data) => {
     return{
         type: 'HOME',
+        data
+    }
+};
+
+export const sizeFilter = (data) => {
+    return{
+        type: 'SIZE_FILTER',
+        data
+    }
+};
+
+export const updateFilter = (data) => {
+    return{
+        type: 'UPDATE_FILTER',
+        data
+    }
+};
+
+export const priceFilter = (data) => {
+    return{
+        type: 'PRICE_FILTER',
+        data
+    }
+};
+
+export const clearFilter = (data) => {
+    return{
+        type: 'CLEAR_FILTER',
         data
     }
 };

@@ -16,16 +16,16 @@ class SortBy extends Component {
 }
 
 function matchDispatchToProps(dispatch) {
-	console.log('matchDispatchToProps', dispatch)
+	// console.log('matchDispatchToProps', dispatch)
 	return bindActionCreators({
 		sortby
 	}, dispatch);
 };
   
 function mapStateToProps(state) {
-	console.log('mapStateToProps', state)
+	// console.log('mapStateToProps', state)
 	return {
-		data: state.sortby
+		data: state.default
 	}
 };
 
