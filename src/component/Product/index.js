@@ -9,10 +9,12 @@ class Product extends Component {
       this.props.product.map(item =>
         <li className='listStyle' key={item.id}>
           <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
-          <img alt="product img" className="imageStyle" src={item.url}></img>
+          <Link to={{pathname:'/details', state:{item}}}>
+            <img alt="product img" className="imageStyle" src={item.url}></img>
+          </Link>
           <p className="productName">{item.name}</p>
           <p>{item.price}</p>
-          <Link className="buttonStyle" to={{pathname:'/details', state:{item}}}>Add to Cart</Link>
+          <Link className="buttonStyle" to={{pathname:'/details', state:{item}}}>View More</Link>
         </li>
       )
     );

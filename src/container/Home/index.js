@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
-import { Header } from '../../component/Header';
-import { Footer } from '../../component/Footer';
 import Product from '../../component/Product'
 import Sidebar from '../../component/Sidebar';
 import SortBy from '../../component/SortBy';
 import './index.css';
 import { connect } from 'react-redux';
-import {getAllProducts} from '../../actions';
+import { getAllProducts, getAllSizes } from '../../actions';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sizes: [
-        { id: 1, size: 'S' },
-        { id: 2, size: 'M' },
-        { id: 3, size: 'L' },
-        { id: 4, size: 'XL' },
-        { id: 5, size: 'XXL' },
-      ],
+      sizes: this.props.sizes,
       sortby: [
         { id: 1, option: 'high to low', name: 'High to Low' },
         { id: 2, option: 'low to hign', name: 'Low to High' },
       ],
-      filteredArray: [],
+      filteredArray: this.props.products,
     }
 
   }
@@ -56,18 +48,23 @@ class Home extends Component {
     });
   }
   componentDidMount() {
-    this.props.recieveProducts();
+    this.props.recieveProducts(); 
+    this.props.getSizes();
+  }
+  
+  callBack=(products)=>{
+    this.setState({ filteredArray: products });
   }
 
   componentWillReceiveProps(newProps) {
     this.setState({ filteredArray: newProps.products });
+    this.setState({ sizes: newProps.sizes })
   }
 
   render() {
     console.log("products",this.state.filteredArray)
     return (
-      <div className="App">
-        <Header />
+      <div className="App">        
         <div className="content-wrapper">
           <div className="sidebarWrapper">
             <h4>Sizes</h4>
@@ -87,7 +84,6 @@ class Home extends Component {
             </ul>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -95,12 +91,14 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.getProducts.products
+    products: state.shopReducer.products,
+    sizes: state.shopReducer.sizes
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  recieveProducts: () => dispatch(getAllProducts())
+  recieveProducts: () => dispatch(getAllProducts()),
+  getSizes: () => dispatch(getAllSizes())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

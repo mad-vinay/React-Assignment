@@ -1,6 +1,28 @@
 .headerStyle {
     background: #000;
     color: #fff;
-    padding: 10px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.cartButtonStyle {
+    background: url("../../assets/img/shopping-cart.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 20px;
+    width: 32px;
+}
+
+.cartWrapStyle {
+    display: inline-flex;
+    position: relative;
+}
+
+.cartCountStyle {
+    color: #e65910;
+    position: absolute;
+    top: -5px;
+    right: 7px;
+    font-weight: bold;
 }
