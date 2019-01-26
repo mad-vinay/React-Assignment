@@ -48,7 +48,7 @@ class Home extends Component {
           <div className="sidebarWrapper">
             <h4>Sizes</h4>
             <button className="clearBtn" onClick={this.clearFilter}>Clear Filter</button>
-            <Sidebar size={this.props.data.sizes} btnStyles={this.state.clicked === false ? "bgBlack" : "bgRed"}/>
+            <Sidebar size={this.props.data.sizes} btnStyles={this.state.clicked === false ? "bgBlack" : "bgGreen"}/>
             <div className="freeShippingBtn" onClick={this.freeShippingFilter}>free shipping</div>
           </div>
           <div className="selectBoxWrapper">

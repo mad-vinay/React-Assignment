@@ -1,5 +1,5 @@
 .bgBlack,
-.bgRed {
+.bgGreen {
     border-radius: 50%;
     padding: 10px;
     color: #fff;
@@ -16,6 +16,6 @@
     background: black;
 }
 
-.bgRed {
-    background: red;
+.bgGreen{
+    background: green;
 }

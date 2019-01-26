@@ -25,7 +25,8 @@
 .imageStyle {
     height: 200px
 }
-.buttonStyle {
+.buttonStyle ,
+.selectedStyle{
     background: #000;
     color: #fff;
     width: 50%;
@@ -41,4 +42,7 @@
 .productName {
     font-size: 12px;
     text-transform: capitalize;
+}
+.selectedStyle {
+    background: green;
 }

@@ -27,6 +27,8 @@ const initialState = {
     text: 0,
     selectedValue: '',
     count: 0,
+    itemsInCart : [],
+    cartItems: [],
 }
 
 
@@ -72,7 +74,17 @@ export default (state = initialState, action) => {
         case "COUNT_INCREMENT":
             return {
                 ...state,
-                count: action.data
+                count: action.data,
+            };
+        case "COUNT_UPDATION":
+            return {
+                ...state,
+                itemsInCart: action.data
+            };
+        case "VIEW_CART":
+            return {
+                ...state,
+                cartItems: action.data
             };
         default:
             return {

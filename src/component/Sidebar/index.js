@@ -16,7 +16,7 @@ class Sidebar extends Component {
   sizeFilter = (size, e) => {
     let {selectedSize} = this.props.data;
     if(selectedSize.indexOf(size) < 0) {
-      e.target.setAttribute("class", "bgRed")
+      e.target.setAttribute("class", "bgGreen")
       this.props.sizeFilter([...selectedSize, size])
       this.updateFilteredData([...selectedSize, size])
     } else {

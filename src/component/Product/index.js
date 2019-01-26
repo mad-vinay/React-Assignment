@@ -4,13 +4,36 @@ import {Link} from 'react-router-dom';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { counterIncrement } from '../../actions/AddAction'
+import { counterIncrement, countUpdation, viewCart } from '../../actions/AddAction'
 
 class Product extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      isActive: false
+    }
+  }
 
-  cartBtnClick = () => {
-    this.props.counterIncrement(this.props.data.count + 1)
+  cartBtnClick = (item, e) => {
+    // debugger
+    let {itemsInCart, cartItems} = this.props.data;
+    if(itemsInCart.indexOf(item.id) < 0) {
+      e.target.setAttribute("class", "selectedStyle")
+      e.target.innerText = "Added to Cart"
+      this.props.counterIncrement(this.props.data.count + 1)
+      this.props.countUpdation([...itemsInCart, item.id])
+      this.props.viewCart([...cartItems, item])
+    }
+    else {
+      e.target.setAttribute("class", "buttonStyle")
+      e.target.innerText = "Add to Cart"
+      this.props.counterIncrement(this.props.data.count - 1)
+      itemsInCart.splice(itemsInCart.indexOf(item.id), 1)
+      this.props.countUpdation(itemsInCart)
+      cartItems.splice(cartItems.indexOf(item.id, 1))
+      this.props.viewCart(cartItems)
+    }
   }
 
   render() {
@@ -23,7 +46,7 @@ class Product extends Component {
           <p>{item.price}</p>
           <div className="btnWrap">
             <Link className="buttonStyle" to={{pathname:'/details', state:{item}}}>Show More</Link>
-            <button className="buttonStyle" onClick = {this.cartBtnClick}>Add to Cart</button>
+            <button className="buttonStyle" onClick = {this.cartBtnClick.bind(this, item)}>Add to Cart</button>
           </div>
         </li>
       )
@@ -34,7 +57,9 @@ class Product extends Component {
 function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
-    counterIncrement
+    counterIncrement,
+    countUpdation,
+    viewCart
   }, dispatch);
 };
 

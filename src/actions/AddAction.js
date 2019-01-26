@@ -53,3 +53,17 @@ export const counterIncrement = (data) => {
         data
     }
 };
+
+export const countUpdation = (data) => {
+    return{
+        type: 'COUNT_UPDATION',
+        data
+    }
+};
+
+export const viewCart = (data) => {
+    return{
+        type: 'VIEW_CART',
+        data
+    }
+};
