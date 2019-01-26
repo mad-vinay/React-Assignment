@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../../component/Header';
-import Footer from '../../component/Footer';
 import Product from '../../component/Product'
 import Sidebar from '../../component/Sidebar';
 import SortBy from '../../component/SortBy';
@@ -46,7 +44,6 @@ class Home extends Component {
   render() {
       return (
       <div className="App">
-        <Header/>
         <div className="content-wrapper">
           <div className="sidebarWrapper">
             <h4>Sizes</h4>
@@ -67,7 +64,6 @@ class Home extends Component {
             </ul>
           </div>
         </div>
-        <Footer/>
       </div>
     );
   }

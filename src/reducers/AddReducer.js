@@ -25,7 +25,8 @@ const initialState = {
     ],
     filteredArray: products,
     text: 0,
-    selectedValue: ''
+    selectedValue: '',
+    count: 0,
 }
 
 
@@ -67,6 +68,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 selectedSize: action.data
+            };
+        case "COUNT_INCREMENT":
+            return {
+                ...state,
+                count: action.data
             };
         default:
             return {

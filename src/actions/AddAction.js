@@ -46,3 +46,10 @@ export const clearFilter = (data) => {
         data
     }
 };
+
+export const counterIncrement = (data) => {
+    return{
+        type: 'COUNT_INCREMENT',
+        data
+    }
+};

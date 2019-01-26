@@ -4,3 +4,13 @@
     padding: 10px;
     text-align: center;
 }
+.cartWrapper {
+    position: absolute;
+    right: 35px;
+    top: 7px;
+    display: flex;
+    align-items: center;
+}
+.cartWrapper span {
+    margin-left: 10px;
+}

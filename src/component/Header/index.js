@@ -1,42 +1,37 @@
 import React, { Component } from 'react';
 import './index.css';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { addname } from '../../actions/AddAction.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { counterIncrement } from '../../actions/AddAction'
 
 class Header extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   // console.log(props)
-  // }
-
-  // onClick = () => {
-  //   this.props.addname(this.props.data.text + 1)
-  // }
 
   render() {
     return (
       <div className="headerStyle">
-        {/* <span>{this.props.data.text}</span> */}
-        {/* <button onClick={this.onClick}></button> */}
         <span>Shopping Cart</span>
+        <div className="cartWrapper">
+          <img src={require("../../assets/shopping-cart.png")}></img>
+          <span>{this.props.data.count}</span>
+        </div>
       </div>
     );
   }
 }
 
-// function matchDispatchToProps(dispatch) {
-//   console.log('matchDispatchToProps')
-//   return bindActionCreators({
-//       addname
-//   }, dispatch);
-// };
+function matchDispatchToProps(dispatch) {
+  // console.log('matchDispatchToProps', dispatch)
+  return bindActionCreators({
+    counterIncrement
+  }, dispatch);
+};
 
-// function mapStateToProps(state) {
-//   console.log('mapStateToProps', state)
-//   return {
-//       data: state.addname
-//   }
-// };
-export default Header;
+function mapStateToProps(state) {
+  // console.log('mapStateToProps', state)
+  return {
+      data: state.default
+  }
+};
+
+export default connect (mapStateToProps, matchDispatchToProps) (Header);

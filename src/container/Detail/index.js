@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../../component/Header';
-import Footer from '../../component/Footer';
 import {Link} from 'react-router-dom';
 import './index.css';
 
@@ -10,7 +8,6 @@ class Detail extends Component {
         // console.log(item);
 		return (
             <div className="detailsContainer">
-                <Header/>
                 <Link className="backButton" to={{pathname:'/'}}>Back to home</Link>
                 <div className="detailContent">
                     <div className="detailBox">
@@ -19,7 +16,6 @@ class Detail extends Component {
                         <h4>Price: {item.price}</h4>
                     </div>
                 </div>
-                <Footer/>
             </div>
 		);
 	}
