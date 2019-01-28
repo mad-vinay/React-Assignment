@@ -38,3 +38,9 @@
     margin-left: 20px;
     background: red;
 }
+.prodDescription {
+    font-weight: 600;
+}
+.priceTag span {
+    font-size: 15px;
+}

@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { viewCart, counterIncrement, countUpdation } from '../../actions/AddAction'
+import { viewCart, countUpdation } from '../../actions/AddAction'
 
 class CartItems extends Component {
     
     deleteItem = (item) => {
         debugger
+        item.isActive = !item.isActive
         let {cartItems, itemsInCart} = this.props.data;
-        this.props.counterIncrement(this.props.data.count - 1)
-        cartItems.splice(cartItems.indexOf(item.id, 1))
-        itemsInCart.splice(itemsInCart.indexOf(item.id, 1)) 
+        cartItems.splice(cartItems.indexOf(item.id), 1)
+        itemsInCart.splice(itemsInCart.indexOf(item.id), 1)
         this.props.countUpdation(itemsInCart)
         this.props.viewCart(cartItems)
-        // console.log(item)
     }
 
     render() {
@@ -28,10 +27,17 @@ class CartItems extends Component {
                     </div>
                     <div className="prodDetails">
                         <p className="productName">{item.name}</p>
-                        <p className="priceTag">{item.price}</p>
+                        <p className="priceTag"><span>Price:</span> {item.price}</p>
                         <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
-                    </div>
-                    <div>
+                        <p className="prodDescription">product description</p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like 
+                            Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
                         <button className="buttonStyle">Place the Order</button>
                         <button onClick={this.deleteItem.bind(this, item)} className="buttonStyle deleteItem">Remove from Cart</button>
                     </div>
@@ -45,7 +51,6 @@ function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
     viewCart,
-    counterIncrement,
     countUpdation
   }, dispatch);
 };

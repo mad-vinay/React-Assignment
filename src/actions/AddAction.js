@@ -47,13 +47,6 @@ export const clearFilter = (data) => {
     }
 };
 
-export const counterIncrement = (data) => {
-    return{
-        type: 'COUNT_INCREMENT',
-        data
-    }
-};
-
 export const countUpdation = (data) => {
     return{
         type: 'COUNT_UPDATION',

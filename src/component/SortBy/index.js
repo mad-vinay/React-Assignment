@@ -14,13 +14,6 @@ class SortBy extends Component {
 		);
 	}
 }
-
-function matchDispatchToProps(dispatch) {
-	// console.log('matchDispatchToProps', dispatch)
-	return bindActionCreators({
-		sortby
-	}, dispatch);
-};
   
 function mapStateToProps(state) {
 	// console.log('mapStateToProps', state)
@@ -33,4 +26,4 @@ SortBy.propTypes = {
     selectedValue: PropTypes.array.isRequired
 };
 
-export default connect (mapStateToProps, matchDispatchToProps) (SortBy);
+export default connect (mapStateToProps) (SortBy);

@@ -3,7 +3,7 @@ import './index.css';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { counterIncrement, viewCart } from '../../actions/AddAction'
+import { viewCart } from '../../actions/AddAction'
 
 class Header extends Component {
 
@@ -14,7 +14,7 @@ class Header extends Component {
         <Link className="cartWrapper" onClick={this.viewCart} to={{pathname:'/cartItem', state:{items: this.props.data.cartItems}}}>
           <span>Cart</span>
           <img alt="cart icon" src={require("../../assets/shopping-cart.png")}></img>
-          <span className="count">{this.props.data.count}</span>
+          <span className="count">{this.props.data.cartItems.length}</span>
         </Link>
       </div>
     );
@@ -24,7 +24,6 @@ class Header extends Component {
 function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
-    counterIncrement,
     viewCart
   }, dispatch);
 };
