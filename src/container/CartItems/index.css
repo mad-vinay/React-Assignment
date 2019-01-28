@@ -34,3 +34,7 @@
 .prodDetails {
     margin: 0 120px 0 0;
 }
+.listStyle.cartItems .buttonStyle.deleteItem {
+    margin-left: 20px;
+    background: red;
+}
