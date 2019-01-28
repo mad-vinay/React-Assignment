@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { viewCart, countUpdation } from '../../actions/AddAction'
+import { viewCart, deleteCart, countUpdation } from '../../actions/AddAction'
 
 class CartItems extends Component {
     
     deleteItem = (item) => {
-        debugger
         item.isActive = !item.isActive
-        let {cartItems, itemsInCart} = this.props.data;
-        cartItems.splice(cartItems.indexOf(item.id), 1)
-        itemsInCart.splice(itemsInCart.indexOf(item.id), 1)
-        this.props.countUpdation(itemsInCart)
-        this.props.viewCart(cartItems)
+        let itemsInCart  = this.props.data;
+        // cartItems.splice(cartItems.indexOf(item.id), 1)
+        // itemsInCart.splice(itemsInCart.indexOf(item.id), 1);
+        console.log("item", item)
+        // this.props.countUpdation(itemsInCart);
+        this.props.deleteCart(item)
     }
 
     render() {
-        const {items} = this.props.location.state;
+        const items = this.props.data;
 
         return (
             items.map(item =>
@@ -51,15 +51,16 @@ function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
     viewCart,
-    countUpdation
+    countUpdation,
+    deleteCart
   }, dispatch);
 };
 
 function mapStateToProps(state) {
     // debugger
-  // console.log('mapStateToProps', state)
+  console.log('mapStateToProps', state)
   return {
-      data: state.default
+      data: state.default.cartItems
   }
 };
  

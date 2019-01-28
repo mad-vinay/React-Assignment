@@ -1,3 +1,5 @@
+import { SIDEBAR } from '../constants/actionTypes';
+
 let products = [
     {id: 1, name: "product A", price: '$10', isActive: false, shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5azB_EG6ZqYNHMh6_iBmEo2rc3vczNMfxHlAOGi5bXA2LkAFYbg", size: 'S'},
     {id: 2, name: "product B", price: '$100', isActive: false,  shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZT-t_9ZmRG3QcGdUCMyF9AMdBUykODDxhTjBbd2J_Dt3OpT_hFw", size: 'L'},
@@ -65,9 +67,20 @@ export default (state = initialState, action) => {
                 itemsInCart: action.data
             };
         case "VIEW_CART":
+            console.log("state", state, action.data);
             return {
                 ...state,
-                cartItems: action.data
+                cartItems: [...state.cartItems, action.data]
+            };
+
+         case "DELETE_CART":
+            const index = state.cartItems.findIndex(item => item.id === action.data.id);
+            const { cartItems } = state;
+            cartItems.splice(index, 1);
+            debugger;
+            return {
+                ...state,
+                cartItems: [...cartItems]
             };
         default:
             return {

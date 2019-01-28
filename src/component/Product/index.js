@@ -9,22 +9,21 @@ import { countUpdation, viewCart } from '../../actions/AddAction'
 class Product extends Component {
 
   cartBtnClick = (item, e) => {
-    debugger
 
     item.isActive = !item.isActive
     let {itemsInCart, cartItems} = this.props.data;
-    if(itemsInCart.indexOf(item.id) < 0) {
+    // if(itemsInCart.indexOf(item.id) < 0) {
       this.props.countUpdation([...itemsInCart, item.id])
-      this.props.viewCart([...cartItems, item])
-    }
-    else {
-      itemsInCart.splice(itemsInCart.indexOf(item.id), 1)
-      this.props.countUpdation(itemsInCart)
-      // cartItems.splice(cartItems.indexOf((cartItems.findIndex(x => x.id=item.id), 1)), 1)
+      this.props.viewCart(item)
+    // }
+    // else {
+    //   itemsInCart.splice(itemsInCart.indexOf(item.id), 1)
+    //   this.props.countUpdation(itemsInCart)
+    //   // cartItems.splice(cartItems.indexOf((cartItems.findIndex(x => x.id=item.id), 1)), 1)
 
-      cartItems.splice(cartItems.indexOf(item.id), 1)
-      this.props.viewCart(cartItems)
-    }
+    //   cartItems.splice(cartItems.indexOf(item.id), 1)
+    //   this.props.viewCart(cartItems)
+    // }
   }
 
   render() {

@@ -11,10 +11,10 @@ class Header extends Component {
     return (
       <div className="headerStyle">
         <span>Shopping Cart</span>
-        <Link className="cartWrapper" onClick={this.viewCart} to={{pathname:'/cartItem', state:{items: this.props.data.cartItems}}}>
+        <Link className="cartWrapper" onClick={this.viewCart} to={{pathname:'/cartItem', state:{items: this.props.data}}}>
           <span>Cart</span>
           <img alt="cart icon" src={require("../../assets/shopping-cart.png")}></img>
-          <span className="count">{this.props.data.cartItems.length}</span>
+          <span className="count">{this.props.data.length}</span>
         </Link>
       </div>
     );
@@ -29,9 +29,9 @@ function matchDispatchToProps(dispatch) {
 };
 
 function mapStateToProps(state) {
-  // console.log('mapStateToProps', state)
+  console.log('mapStateToProps heaader', state.default.cartItems)
   return {
-      data: state.default
+      data: state.default.cartItems
   }
 };
 

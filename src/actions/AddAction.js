@@ -1,6 +1,8 @@
+import { SIDEBAR } from '../constants/actionTypes';
+
 export const sidebar = (data) => {
     return{
-        type: 'SIDEBAR',
+        type: SIDEBAR,
         data
     }
 };
@@ -60,3 +62,12 @@ export const viewCart = (data) => {
         data
     }
 };
+
+export const deleteCart = (data) => {
+    return{
+        type: 'DELETE_CART',
+        data
+    }
+};
+
+
