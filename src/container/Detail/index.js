@@ -5,7 +5,6 @@ import './index.css';
 class Detail extends Component {
 	render() {
         const {item} = this.props.location.state;
-        // console.log(item);
 		return (
             <div className="detailsContainer">
                 <Link className="backButton" to={{pathname:'/'}}>Back to home</Link>

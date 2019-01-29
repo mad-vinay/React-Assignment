@@ -1,5 +1,5 @@
-.bgBlack,
-.bgGreen {
+.btnStyles,
+.activeStyle  {
     border-radius: 50%;
     padding: 10px;
     color: #fff;
@@ -10,12 +10,9 @@
     margin: 0 15px 15px 0;
     cursor: pointer;
     border: none;
-}
-
-.bgBlack {
     background: black;
 }
 
-.bgGreen{
+.activeStyle {
     background: green;
 }

@@ -3,7 +3,7 @@ import './index.css';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { viewCart } from '../../actions/AddAction'
+import { addAndDeleteCart } from '../../actions/AddAction'
 
 class Header extends Component {
 
@@ -24,7 +24,7 @@ class Header extends Component {
 function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
-    viewCart
+    addAndDeleteCart
   }, dispatch);
 };
 

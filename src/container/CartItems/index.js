@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { viewCart, deleteCart, countUpdation } from '../../actions/AddAction'
+import { addAndDeleteCart} from '../../actions/AddAction'
 
 class CartItems extends Component {
     
     deleteItem = (item) => {
-        item.isActive = !item.isActive
-        let itemsInCart  = this.props.data;
-        // cartItems.splice(cartItems.indexOf(item.id), 1)
-        // itemsInCart.splice(itemsInCart.indexOf(item.id), 1);
-        console.log("item", item)
-        // this.props.countUpdation(itemsInCart);
-        this.props.deleteCart(item)
+        this.props.addAndDeleteCart(item)
     }
 
     render() {
@@ -50,9 +44,7 @@ class CartItems extends Component {
 function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
-    viewCart,
-    countUpdation,
-    deleteCart
+    addAndDeleteCart
   }, dispatch);
 };
 

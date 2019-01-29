@@ -56,18 +56,12 @@ export const countUpdation = (data) => {
     }
 };
 
-export const viewCart = (data) => {
+export const addAndDeleteCart = (data) => {
     return{
-        type: 'VIEW_CART',
+        type: 'ADD_AND_DELETE_CART',
         data
     }
 };
 
-export const deleteCart = (data) => {
-    return{
-        type: 'DELETE_CART',
-        data
-    }
-};
 
 

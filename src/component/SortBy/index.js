@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { sortby } from '../../actions/AddAction.js';
 
 
 class SortBy extends Component {
@@ -16,7 +14,6 @@ class SortBy extends Component {
 }
   
 function mapStateToProps(state) {
-	// console.log('mapStateToProps', state)
 	return {
 		data: state.default
 	}

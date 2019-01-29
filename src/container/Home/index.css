@@ -6,7 +6,7 @@ ul {
 }
 .listwrap {
     width: 80%;
-    padding-top: 15px;
+    padding-top: 20px;
     margin-bottom: 50px;
 }
 .sidebarWrapper h4 {
@@ -38,6 +38,9 @@ ul {
 }
 .productCount {
     font-size: 12px;
+    background: green;
+    padding: 10px;
+    color: #fff;
 }
 .selectboxStyle {
     height: 30px;

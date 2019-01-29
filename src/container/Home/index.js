@@ -5,36 +5,16 @@ import SortBy from '../../component/SortBy';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { homepage, sizeFilter, updateFilter, priceFilter, clearFilter } from '../../actions/AddAction.js';
+import { sizeFilter, priceFilter, clearFilter } from '../../actions/AddAction.js';
 
 class Home extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { 
-      clicked: false
-    };
-  }
-
   clearFilter = () => {
-    // debugger
-    this.props.updateFilter(this.props.data.products)
-    this.props.clearFilter([this.props.data.selectedSize])
-    this.setState({
-      clicked: this.state.clicked === false ? true : false
-    })
+    this.props.clearFilter()
   }
 
-  afterSetStateFinished() {
-      this.props.priceFilter(this.state.selectedValue === "high to low" ? this.props.data.filteredArray.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)): this.props.data.filteredArray.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)))
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      selectedValue: event.target.value
-    }, () => {
-        this.afterSetStateFinished();
-    });
+  priceFilter = (selectedValue) => {
+    this.props.priceFilter(selectedValue)
   }
 
   freeShippingFilter = () => {
@@ -48,12 +28,12 @@ class Home extends Component {
           <div className="sidebarWrapper">
             <h4>Sizes</h4>
             <button className="clearBtn" onClick={this.clearFilter}>Clear Filter</button>
-            <Sidebar size={this.props.data.sizes} btnStyles={this.state.clicked === false ? "bgBlack" : "bgGreen"}/>
+            <Sidebar size={this.props.data.sizes}/>
             <div className="freeShippingBtn" onClick={this.freeShippingFilter}>free shipping</div>
           </div>
           <div className="selectBoxWrapper">
             <span>Order By</span>
-            <select className="selectboxStyle" value={this.props.data.sortby.option} onChange={this.handleChange}>
+            <select className="selectboxStyle" value={this.props.data.sortby.option} onChange={this.priceFilter}>
               <SortBy selectedValue={this.props.data.sortby} />
             </select>
           </div>
@@ -71,9 +51,7 @@ class Home extends Component {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    homepage,
     sizeFilter,
-    updateFilter,
     priceFilter,
     clearFilter
   }, dispatch);

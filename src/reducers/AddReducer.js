@@ -1,4 +1,4 @@
-import { SIDEBAR } from '../constants/actionTypes';
+import * as types from "../constants/actionTypes"
 
 let products = [
     {id: 1, name: "product A", price: '$10', isActive: false, shipping: 'free shipping', url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5azB_EG6ZqYNHMh6_iBmEo2rc3vczNMfxHlAOGi5bXA2LkAFYbg", size: 'S'},
@@ -15,11 +15,11 @@ const initialState = {
     selectedSize: [],
     products : products,
     sizes: [
-    {id: 1, size: 'S'},
-    {id: 2, size: 'M'},
-    {id: 3, size: 'L'},
-    {id: 4, size: 'XL'},
-    {id: 5, size: 'XXL'},
+    {id: 1, size: 'S', isActive: false},
+    {id: 2, size: 'M', isActive: false},
+    {id: 3, size: 'L', isActive: false},
+    {id: 4, size: 'XL', isActive: false},
+    {id: 5, size: 'XXL', isActive: false},
     ],
     sortby: [
     {id: 1, option: 'high to low', name: 'High to Low'},
@@ -36,52 +36,72 @@ const initialState = {
 //   ​Reducer corresponding to AddAction.js
 export default (state = initialState, action) => {
     switch (action.type) {
-        case "HOME":
+
+        case types.SIZE_FILTER:
+            const { selectedSize, filteredArray } = state;
+            action.data.isActive = !action.data.isActive
+            if (selectedSize.indexOf(action.data.size) < 0) {
+                selectedSize.push(action.data.size);
+                const filteredData = state.products.filter(item =>(selectedSize.indexOf(item.size) !== -1))
+                return {
+                    ...state,
+                    selectedSize :  ([...selectedSize]),
+                    filteredArray: ([...filteredData])
+                };
+                
+            }
+            else {
+                let filteredData;
+                selectedSize.splice(selectedSize.indexOf(action.data.size), 1);
+                if (selectedSize.length) {
+                    filteredData = state.products.filter(item =>(selectedSize.indexOf(item.size) !== -1))
+                } else {
+                    filteredData = state.products;
+                }
+                return {
+                    ...state,
+                    selectedSize :  ([...selectedSize]),
+                    filteredArray: ([...filteredData])
+                };
+                
+            }
+
+        case types.PRICE_FILTER:
+            const selectedValue = action.data.target.value;
+            const pricefilteredData = (selectedValue === "high to low" ? state.filteredArray.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)): state.filteredArray.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)))
             return {
                 ...state,
-            };
-        case "SIZE_FILTER":
-            return {
-                ...state,
-                selectedSize: action.data
-            };
-        case "UPDATE_FILTER":
-            return {
-                ...state,
-                filteredArray: action.data
-            };
-        case "PRICE_FILTER":
-            return {
-                ...state,
-                // selectedValue: action.data,
-                filteredArray: action.data
-            };
-        case "CLEAR_FILTER":
-            return {
-                ...state,
-                selectedSize: action.data
-            };
-        case "COUNT_UPDATION":
-            return {
-                ...state,
-                itemsInCart: action.data
-            };
-        case "VIEW_CART":
-            console.log("state", state, action.data);
-            return {
-                ...state,
-                cartItems: [...state.cartItems, action.data]
+                filteredArray: ([...pricefilteredData])
             };
 
-         case "DELETE_CART":
-            const index = state.cartItems.findIndex(item => item.id === action.data.id);
-            const { cartItems } = state;
-            cartItems.splice(index, 1);
-            debugger;
+        case types.CLEAR_FILTER:
+            state.sizes.map(item => {
+                item.isActive= false
+            })
             return {
                 ...state,
-                cartItems: [...cartItems]
+                filteredArray: state.products
             };
+
+        case types.ADD_AND_DELETE_CART:
+            const { cartItems } = state;
+            const index = cartItems.findIndex(item => item.id === action.data.id);
+            if(index < 0) {
+                action.data.isActive = true
+                return {
+                    ...state,
+                    cartItems: [...state.cartItems, action.data]
+                };
+            }
+            else {
+                action.data.isActive = false
+                cartItems.splice(index, 1)
+                return  {
+                    ...state,
+                    cartItems: [...cartItems]
+                }
+            }
+
         default:
             return {
                 ...state
