@@ -44,3 +44,37 @@
 .priceTag span {
     font-size: 15px;
 }
+.multipleProduct {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+.multipleProduct span {
+    margin: 0 15px;
+    font-size: 16px;
+    width: 51px;
+    height: 30px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.multipleProduct button {
+    background: #fff;
+    border: 1px solid;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+.priceTag .amount {
+    font-weight: 600;
+    font-size: 20px;
+}
+.inactiveBtn {
+    pointer-events: none;
+    opacity: 0.5;
+}

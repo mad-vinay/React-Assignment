@@ -19,7 +19,7 @@ class Product extends Component {
           <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
           <img alt="product img" className="imageStyle" src={item.url}></img>
           <p className="productName">{item.name}</p>
-          <p>{item.price}</p>
+          <p>$ {item.price}</p>
           <div className="btnWrap">
             <Link className="buttonStyle" to={{pathname:'/details', state:{item}}}>Show More</Link>
             <button className={item.isActive === false ? "buttonStyle" : "selectedStyle"} onClick = {this.addToCart.bind(this, item)}>{item.isActive === false ? "Add to Cart" : "Added to Cart"}</button>

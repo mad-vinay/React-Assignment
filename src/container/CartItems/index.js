@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addAndDeleteCart} from '../../actions/AddAction'
+import { addAndDeleteCart, addNumberOfProducts, deleteNumberOfProducts } from '../../actions/AddAction'
 
 class CartItems extends Component {
     
@@ -10,18 +10,34 @@ class CartItems extends Component {
         this.props.addAndDeleteCart(item)
     }
 
-    render() {
-        const items = this.props.data;
+    incrementBtnClick = (item) => {
+        this.props.addNumberOfProducts(item)
+    }
 
+    decrementBtnClick = (item) => {
+        this.props.deleteNumberOfProducts(item)
+    }
+
+    componentWillMount() {
+        // debugger
+    }
+
+    render() {
+        // debugger
         return (
-            items.map(item =>
+            this.props.data.map(item =>
                 <li className='listStyle cartItems' key={item.id}>
                     <div className="imageWrap">
                         <img alt="product img" className="imageStyle" src={item.url}></img>                
                     </div>
                     <div className="prodDetails">
                         <p className="productName">{item.name}</p>
-                        <p className="priceTag"><span>Price:</span> {item.price}</p>
+                        <p className="priceTag"><span>Price:</span> $ <span className="amount">{item.price * item.count}</span></p>
+                        <div className="multipleProduct">
+                            <button className={item.count === 1 ? "inactiveBtn":"activeBtn"} onClick={this.decrementBtnClick.bind(this, item)}>-</button>
+                            <span>{item.count}</span>
+                            <button onClick={this.incrementBtnClick.bind(this, item)} >+</button>
+                        </div>
                         <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
                         <p className="prodDescription">product description</p>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -44,7 +60,9 @@ class CartItems extends Component {
 function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
-    addAndDeleteCart
+    addAndDeleteCart,
+    addNumberOfProducts,
+    deleteNumberOfProducts
   }, dispatch);
 };
 
@@ -52,7 +70,7 @@ function mapStateToProps(state) {
     // debugger
   console.log('mapStateToProps', state)
   return {
-      data: state.default.cartItems
+      data: state.default.cartItems,
   }
 };
  
