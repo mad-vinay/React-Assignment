@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addAndDeleteCart, addNumberOfProducts, deleteNumberOfProducts } from '../../actions/AddAction'
+import { addAndDeleteCart, updateProductCount } from '../../actions/AddAction';
+import {Link} from "react-router-dom";
+// import {browserHistory} from 'react-router'
 
 class CartItems extends Component {
     
@@ -11,21 +13,28 @@ class CartItems extends Component {
     }
 
     incrementBtnClick = (item) => {
-        this.props.addNumberOfProducts(item)
+        this.props.updateProductCount({item, type: 'increment'})
     }
 
     decrementBtnClick = (item) => {
-        this.props.deleteNumberOfProducts(item)
+        this.props.updateProductCount({item, type: 'decrement'})
     }
 
     componentWillMount() {
         // debugger
     }
 
+    // placeOrder = (item) => {
+    //     this.props.placeOrder(item)
+    //     browserHistory.push('/orderDetails');
+    // }
+
     render() {
         // debugger
+        if(this.props.data.length) {
         return (
-            this.props.data.map(item =>
+            <div>{
+                this.props.data.map(item =>
                 <li className='listStyle cartItems' key={item.id}>
                     <div className="imageWrap">
                         <img alt="product img" className="imageStyle" src={item.url}></img>                
@@ -42,18 +51,29 @@ class CartItems extends Component {
                         <p className="prodDescription">product description</p>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset 
-                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like 
-                            Aldus PageMaker including versions of Lorem Ipsum.
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                         </p>
-                        <button className="buttonStyle">Place the Order</button>
                         <button onClick={this.deleteItem.bind(this, item)} className="buttonStyle deleteItem">Remove from Cart</button>
                     </div>
                 </li>
-            )
+            
+            )}
+            <div className="placeOrderBtnWrap">
+                {/* <button className="buttonStyle placeOrder"  onClick={this.placeOrder.bind(this, this.props.data)} >Place Order</button> */}
+                <Link className="buttonStyle placeOrder" to={{pathname:'/orderDetails'}}>Place the Order</Link>
+            </div>
+            </div>
         );
+        }
+        else {
+            return(
+                <div className="emptyCart">
+                    <img alt="sad smiley" src={require("../../assets/sad.png")}></img>
+                    <span>Cart is empty..!!</span>
+                    <Link className="backButton" to={{pathname:'/'}}>Back to home</Link>
+                </div>
+            )
+        }
     }
 }
 
@@ -61,8 +81,7 @@ function matchDispatchToProps(dispatch) {
   // console.log('matchDispatchToProps', dispatch)
   return bindActionCreators({
     addAndDeleteCart,
-    addNumberOfProducts,
-    deleteNumberOfProducts
+    updateProductCount,
   }, dispatch);
 };
 

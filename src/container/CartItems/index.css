@@ -35,7 +35,7 @@
     margin: 0 120px 0 0;
 }
 .listStyle.cartItems .buttonStyle.deleteItem {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     background: red;
 }
 .prodDescription {
@@ -77,4 +77,35 @@
 .inactiveBtn {
     pointer-events: none;
     opacity: 0.5;
+}
+.emptyCart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 90px);
+    flex-direction: column;
+}
+.emptyCart span {
+    font-size: 25px;
+    color: red;
+    margin-top: 15px;
+}
+.placeOrder {
+    background: green;
+    margin-bottom: 80px;
+    width: auto;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.placeOrderBtnWrap {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 70px);
+    margin: 0 auto;
+}
+.listStyle.cartItems:first-child {
+    margin-top: 100px;
 }

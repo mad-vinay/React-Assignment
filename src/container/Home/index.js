@@ -5,7 +5,7 @@ import SortBy from '../../component/SortBy';
 import './index.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sizeFilter, priceFilter, clearFilter } from '../../actions/AddAction.js';
+import { sizeFilter, priceFilter, clearFilter, freeShippingFilter } from '../../actions/AddAction.js';
 
 class Home extends Component {
 
@@ -18,7 +18,7 @@ class Home extends Component {
   }
 
   freeShippingFilter = () => {
-    this.props.updateFilter(this.props.data.filteredArray.filter(item => item.shipping === "free shipping"))
+    this.props.freeShippingFilter()
   }
 
   render() {
@@ -29,7 +29,7 @@ class Home extends Component {
             <h4>Sizes</h4>
             <button className="clearBtn" onClick={this.clearFilter}>Clear Filter</button>
             <Sidebar size={this.props.data.sizes}/>
-            <div className="freeShippingBtn" onClick={this.freeShippingFilter}>free shipping</div>
+            <div className="freeShippingBtn" onClick={this.freeShippingFilter.bind(this)}>free shipping</div>
           </div>
           <div className="selectBoxWrapper">
             <span>Order By</span>
@@ -53,7 +53,8 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     sizeFilter,
     priceFilter,
-    clearFilter
+    clearFilter,
+    freeShippingFilter
   }, dispatch);
 };
 

@@ -44,11 +44,15 @@ ul {
 }
 .selectboxStyle {
     height: 30px;
-    width: 100px;
+    width: 116px;
     border-radius: 0;
     outline: none;
-    font-size: 12px;
-    background: #fff;
+    background: green;
+    font-size: 15px;
+    margin-left: 10px;
+    color: #fff;
+    border: none;
+    padding: 6px;
 }
 .selectBoxWrapper {
     position: absolute;

@@ -1,8 +1,9 @@
 .detailContent {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: row;
-    justify-content: center
+    justify-content: center;
+    margin-top: 100px;
 }
 .detailBox {
     display: flex;
@@ -14,14 +15,28 @@
 .detailBox p {
     font-size: 30px;
     font-weight: bold;
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
 }
 .backButton {
     font-size: 15px;
     position: absolute;
     z-index: 1;
-    top: 50px;
+    top: 65px;
     left: 15px;
+    background: green;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 10px 10px 25px;
+}
+.backButton::before {
+    content: '';
+    background: url(../../assets/left.png);
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .description {
     width: 50%;
@@ -33,4 +48,27 @@
 .description h4 {
     font-size: 25px;
     letter-spacing: 1px;
+}
+.detailBox img {
+    min-width: 450px;
+}
+.prodName {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+.description span {
+    font-weight: 600;
+}
+.description a {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+.description a::before {
+    content: '';
+    background:url(../../assets/bullet.png);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    margin-right: 8px;
 }

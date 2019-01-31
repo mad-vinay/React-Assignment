@@ -37,7 +37,8 @@ const initialState = {
     count: 0,
     itemsInCart : [],
     cartItems: [],
-    totalCount: 0
+    totalCount: 0,
+    totalAmount: 0,
 }
 
 //   ​Reducer corresponding to AddAction.js
@@ -117,26 +118,33 @@ export default (state = initialState, action) => {
                 }
             }
 
-        case types.INCREMENT_PRODUCT:
-            let totalProductsInacart = state.cartItems.map(item => item.count).reduce((prev, next) => prev + next);
-
-            action.data.count = action.data.count + 1 ;
-            return {
-                ...state,
-                cartItems: [...state.cartItems],
-                totalCount: totalProductsInacart + 1
-            }
-            
-        case types.DECREMENT_PRODUCT:
+        case types.UPDATE_PROD_COUNT:
         // debugger
-            let totalProductsIncart = state.cartItems.map(item => item.count).reduce((prev, next) => prev + next);
-
-            action.data.count = action.data.count - 1 ;
+            let totalProductsInacart = state.cartItems.map(item => item.count).reduce((prev, next) => prev + next);
+            let totalAmountsTobePaid = state.cartItems.map(item => item.price).reduce((prev, next) => prev + next);
+            if (action.data.type === 'increment') {
+                action.data.item.count = action.data.item.count + 1 ;
+                totalProductsInacart = totalProductsInacart + 1
+                totalAmountsTobePaid = totalAmountsTobePaid + action.data.item.price
+            } else {
+                action.data.item.count = action.data.item.count - 1 ;
+                totalProductsInacart = totalProductsInacart - 1
+                totalAmountsTobePaid = totalAmountsTobePaid - action.data.item.price
+            }
             return {
                 ...state,
                 cartItems: [...state.cartItems],
-                totalCount: totalProductsIncart - 1
+                totalCount: totalProductsInacart,
+                totalAmount: totalAmountsTobePaid
             }
+
+        case types.FREE_SHIPPING:
+            const freeShippingFilteredData = state.filteredArray.filter(item => item.shipping === "free shipping")
+            return {
+                ...state,
+                filteredArray: ([...freeShippingFilteredData]),
+            }
+
         default:
             return {
                 ...state
