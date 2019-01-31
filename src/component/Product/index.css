@@ -45,5 +45,5 @@
 }
 .selectedStyle {
     background: green;
-    display: none
+    pointer-events: none;
 }

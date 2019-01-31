@@ -1,24 +1,18 @@
 .detailContent {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    flex-direction: row;
+    justify-content: center
 }
 .detailBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 50px;
-    background: #e2e2e2;
     text-transform: uppercase;
 }
 .detailBox p {
-    font-size: 15px;
+    font-size: 30px;
     font-weight: bold;
     border-bottom: 1px solid;
 }
@@ -28,4 +22,15 @@
     z-index: 1;
     top: 50px;
     left: 15px;
+}
+.description {
+    width: 50%;
+}
+.description h4 span {
+    color: green;
+    margin-left: 5px;
+}
+.description h4 {
+    font-size: 25px;
+    letter-spacing: 1px;
 }
