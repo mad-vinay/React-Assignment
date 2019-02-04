@@ -6,12 +6,20 @@ import { connect } from 'react-redux';
 class SortBy extends Component {
 	render() {
 		return (
-			this.props.data.sortby.map((value) =>
-				<option key={value.id} value={value.option}>{value.name}</option>
-			)
+			<select className="selectboxStyle" value={this.props.data.sortby.option} onChange={this.props.priceFilter}>
+				<option>select</option>
+				{
+					this.props.data.sortby.map((value) =>
+						<option key={value.id} value={value.option}>{value.name}</option>
+					)
+				}
+			</select>
 		);
 	}
 }
+{/* <select className="selectboxStyle" value={this.props.data.sortby.option} onChange={this.priceFilter}>
+              <SortBy selectedValue={this.props.data.sortby} />
+            </select> */}
   
 function mapStateToProps(state) {
 	return {

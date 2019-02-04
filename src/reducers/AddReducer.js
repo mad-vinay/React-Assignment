@@ -94,9 +94,6 @@ export default (state = initialState, action) => {
         case types.ADD_AND_DELETE_CART:
             const { cartItems, totalCount} = state;
             const index = cartItems.findIndex(item => item.id === action.data.id);
-            if(cartItems.length) {
-                let totalCount = cartItems.map(item => item.count).reduce((prev, next) => prev + next);
-            }
             if(index < 0) {
                 action.data.isActive = true;
                 action.data.count = action.data.count + 1
@@ -119,9 +116,8 @@ export default (state = initialState, action) => {
             }
 
         case types.UPDATE_PROD_COUNT:
-        // debugger
             let totalProductsInacart = state.cartItems.map(item => item.count).reduce((prev, next) => prev + next);
-            let totalAmountsTobePaid = state.cartItems.map(item => item.price).reduce((prev, next) => prev + next);
+            let totalAmountsTobePaid = state.cartItems.map(item => item.price * item.count).reduce((prev, next) => prev + next);
             if (action.data.type === 'increment') {
                 action.data.item.count = action.data.item.count + 1 ;
                 totalProductsInacart = totalProductsInacart + 1

@@ -25,13 +25,13 @@ class Detail extends Component {
                             Aldus PageMaker including versions of Lorem Ipsum.
                         </p>
                         <h4>Price: <span>${item.price}</span></h4>
-                        <a>Eligible for Flipkart Pay Later?</a>
+                        <span className="offerZone">Eligible for Flipkart Pay Later?</span>
 
-                        <a>Special PriceGet extra 60% off (price inclusive of discount)T&C</a>
+                        <span className="offerZone">Special PriceGet extra 60% off (price inclusive of discount)T&C</span>
 
-                        <a>Bank Offer5% Instant Discount on EMIs with Axis Bank Credit CardT&C</a>
+                        <span className="offerZone">Bank Offer5% Instant Discount on EMIs with Axis Bank Credit CardT&C</span>
 
-                        <a>Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardT&C</a>
+                        <span className="offerZone">Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardT&C</span>
                     </div>
                 </div>
             </div>

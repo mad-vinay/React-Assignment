@@ -20,50 +20,39 @@ class CartItems extends Component {
         this.props.updateProductCount({item, type: 'decrement'})
     }
 
-    componentWillMount() {
-        // debugger
-    }
-
-    // placeOrder = (item) => {
-    //     this.props.placeOrder(item)
-    //     browserHistory.push('/orderDetails');
-    // }
-
     render() {
-        // debugger
         if(this.props.data.length) {
-        return (
-            <div>{
-                this.props.data.map(item =>
-                <li className='listStyle cartItems' key={item.id}>
-                    <div className="imageWrap">
-                        <img alt="product img" className="imageStyle" src={item.url}></img>                
+            return (
+                <div>{
+                    this.props.data.map(item =>
+                        <li className='listStyle cartItems' key={item.id}>
+                            <div className="imageWrap">
+                                <img alt="product img" className="imageStyle" src={item.url}></img>                
+                            </div>
+                            <div className="prodDetails">
+                                <p className="productName">{item.name}</p>
+                                <p className="priceTag"><span>Price:</span> $ <span className="amount">{item.price * item.count}</span></p>
+                                <div className="multipleProduct">
+                                    <button className={item.count === 1 ? "inactiveBtn":"activeBtn"} onClick={this.decrementBtnClick.bind(this, item)}>-</button>
+                                    <span>{item.count}</span>
+                                    <button onClick={this.incrementBtnClick.bind(this, item)} >+</button>
+                                </div>
+                                <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
+                                <p className="prodDescription">product description</p>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                </p>
+                                <button onClick={this.deleteItem.bind(this, item)} className="buttonStyle deleteItem">Remove from Cart</button>
+                            </div>
+                        </li>
+                    )}
+                    <div className="placeOrderBtnWrap">
+                        <Link className="buttonStyle placeOrder" to={{pathname:'/orderDetails'}}>Place Order</Link>
                     </div>
-                    <div className="prodDetails">
-                        <p className="productName">{item.name}</p>
-                        <p className="priceTag"><span>Price:</span> $ <span className="amount">{item.price * item.count}</span></p>
-                        <div className="multipleProduct">
-                            <button className={item.count === 1 ? "inactiveBtn":"activeBtn"} onClick={this.decrementBtnClick.bind(this, item)}>-</button>
-                            <span>{item.count}</span>
-                            <button onClick={this.incrementBtnClick.bind(this, item)} >+</button>
-                        </div>
-                        <span className={ item.shipping===" " ? "paid-shipping" : "shippingText"}>{item.shipping}</span>
-                        <p className="prodDescription">product description</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </p>
-                        <button onClick={this.deleteItem.bind(this, item)} className="buttonStyle deleteItem">Remove from Cart</button>
-                    </div>
-                </li>
-            
-            )}
-            <div className="placeOrderBtnWrap">
-                {/* <button className="buttonStyle placeOrder"  onClick={this.placeOrder.bind(this, this.props.data)} >Place Order</button> */}
-                <Link className="buttonStyle placeOrder" to={{pathname:'/orderDetails'}}>Place the Order</Link>
-            </div>
-            </div>
-        );
+                    <Link className="backButton" to={{pathname:'/'}}>Back to home</Link>
+                </div>
+            );
         }
         else {
             return(

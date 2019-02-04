@@ -1,0 +1,43 @@
+.orderDetails ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+.orderDetails ul li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.prodImg {
+    max-width: 100px;
+}
+.childStyle {
+    width: 200px;
+    text-align: center;
+}
+.detailsContainer {
+    padding: 0 50px;
+}
+.detailsContainer b {
+    margin-left: 30px;
+    font-size: 30px;
+    color: green;
+}
+.orderDetails {
+    margin-bottom: 80px;
+    padding: 80px 40px;
+}
+.orderDetails .productName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.productName span {
+    font-size: 16px;
+    margin-top: 15px;
+}

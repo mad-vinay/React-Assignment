@@ -29,13 +29,11 @@ class Home extends Component {
             <h4>Sizes</h4>
             <button className="clearBtn" onClick={this.clearFilter}>Clear Filter</button>
             <Sidebar size={this.props.data.sizes}/>
-            <div className="freeShippingBtn" onClick={this.freeShippingFilter.bind(this)}>free shipping</div>
+            {/* <div className={this.props.data.freeShipiingActive === true ? "freeShippingBtnActivated" : "freeShippingBtn"} onClick={this.freeShippingFilter.bind(this)}>free shipping</div> */}
           </div>
           <div className="selectBoxWrapper">
             <span>Order By</span>
-            <select className="selectboxStyle" value={this.props.data.sortby.option} onChange={this.priceFilter}>
-              <SortBy selectedValue={this.props.data.sortby} />
-            </select>
+            <SortBy selectedValue={this.props.data.sortby} priceFilter={this.priceFilter}/>
           </div>
           <div className="listwrap">
             <span className="productCount">{this.props.data.filteredArray.length} product(s) found</span>
